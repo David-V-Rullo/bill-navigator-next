@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <div className="flex min-h-screen  min-w-screen flex-col items-center justify-between p-24 ">
       <div className="flex flex-col justify-start w-1/2 items-center">
-        <h1>{results}</h1>
+        <h1></h1>
         <BillCard />
       </div>
     </div>
