@@ -2,7 +2,7 @@
 import React from "react";
 interface CustomButtonProps {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   color: string;
 }
 
@@ -11,8 +11,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   onClick,
   label,
 }) => {
-  const buttonClass = `bg-${color} rounded-md px-4 py-2 text-white cursor-pointer`;
-  return <button className={buttonClass}>{label}</button>;
+  return (
+    <button
+      className={`bg-${color}-800 rounded-lg p-3 py-3 text-center drop-shadow-lg`}
+    >
+      <div className="text-white font-semibold">{label}</div>
+    </button>
+  );
 };
 
 export default CustomButton;
