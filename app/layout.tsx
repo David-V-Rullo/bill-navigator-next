@@ -2,9 +2,8 @@ import Hero from "@/components/Hero";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins, Nunito, Open_Sans } from "next/font/google";
-const poppins = Poppins({ weight: ["400", "700"], subsets: ["latin"] });
-const inter = Inter({ subsets: ["latin"] });
-const nunito = Nunito({ weight: ["400", "700"], subsets: ["latin"] });
+import dotenv from "dotenv";
+dotenv.config();
 const openSans = Open_Sans({ weight: ["400", "700"], subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Create Next App",
