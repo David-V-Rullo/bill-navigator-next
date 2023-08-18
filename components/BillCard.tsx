@@ -34,6 +34,7 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
   const { bill } = props;
   const { introduced_date, house_passage, senate_passage, enacted } = bill;
   const congress = bill.bill_id.split("-")[1];
+  const memberName = bill.sponsor_name;
   console.log(bill);
   return (
     <div className="flex flex-col p-2 m-2  w-full">
@@ -47,7 +48,10 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
         <div className="font-semibold">Introduced:</div>
         <div className="col-span-3">{bill.introduced_date}</div>
         <div className="font-semibold">Sponsor:</div>
-        <Link href={`/members/${bill.sponsor_id}`} className="col-span-3">
+        <Link
+          href={`/members/${bill.sponsor_name}/${bill.sponsor_id}`}
+          className="col-span-3"
+        >
           {" "}
           {`${bill.sponsor_title} ${bill.sponsor_name} (${
             bill.sponsor_party
