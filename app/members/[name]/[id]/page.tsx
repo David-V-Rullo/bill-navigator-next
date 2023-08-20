@@ -1,8 +1,9 @@
 import React from "react";
-import { Member } from "@/types/index";
+import { Member, MemberData } from "@/types/index";
 import Image from "next/image";
+import PartisanCard from "@/components/PartisanCard";
 
-const fetchMember = async (id: string): Promise<Member> => {
+const fetchMember = async (id: string): Promise<MemberData> => {
   const API_ENDPOINT = `https://api.propublica.org/congress/v1/members/${id}.json`;
   const apiKey = process.env.PROPUBLICA_API_KEY;
   if (!apiKey) {
@@ -16,7 +17,7 @@ const fetchMember = async (id: string): Promise<Member> => {
     throw new Error("Failed to fetch member");
   }
 
-  const data: { results: Member[] } = await response.json();
+  const data: { results: MemberData[] } = await response.json();
   return data.results[0];
 };
 
@@ -27,6 +28,7 @@ const MemberDetailPage = async ({
 }) => {
   const member = await fetchMember(params.id);
   console.log(member);
+  console.log(member.roles[0].votes_with_party_pct);
   const memberName = params.name.replace(/%20/g, " ");
   return (
     <div className="flex flex-col p-4 m-2">
@@ -49,7 +51,10 @@ const MemberDetailPage = async ({
         </div>
       </div>
       <div className="flex flex-row justify-evenly">
-        <p>Stat Card</p>
+        <PartisanCard
+          votesWithParty={member.roles[0].votes_with_party_pct}
+          party={member.current_party}
+        />
         <p>Stat Card</p>
         <p>Stat Card</p>
       </div>
