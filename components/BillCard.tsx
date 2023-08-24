@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { Bill } from "@/types/index";
-import CustomButton from "./CustomButton";
 import Link from "next/link";
 interface BillCardProps {
   bill: Bill;
@@ -9,11 +8,14 @@ interface BillCardProps {
 
 const renderButton = (status: string | null, label: string) => (
   <button
-    className={`px-4 py-2 text-white cursor-default ${
+    className={`px-4 py-2 text-white font-semibold cursor-default ${
       status ? "bg-green-500" : "bg-gray-500"
     }`}
   >
-    {label}
+    <h2 className="bg-inherit">
+      {label}{" "}
+      {status && <h2 className="bg-inherit font-light text-sm">{status}</h2>}
+    </h2>
   </button>
 );
 
@@ -35,7 +37,6 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
   const { introduced_date, house_passage, senate_passage, enacted } = bill;
   const congress = bill.bill_id.split("-")[1];
   const memberName = bill.sponsor_name;
-  console.log(bill);
   return (
     <div className="flex flex-col p-2 m-2  w-full">
       <Link
@@ -64,7 +65,9 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
         <div className="flex flex-row justify-between align-top gap-3 px-3">
           <div className="flex flex-col justify-center align-top h-full w-full">
             <h1 className="font-semibold text-center">Latest Major Action:</h1>
-
+            <h3 className="font-extralight text-center">
+              {bill.latest_major_action_date}
+            </h3>
             <div className="drop-shadow-md p-2 flex flex-row">
               {bill.latest_major_action}
             </div>
@@ -85,7 +88,7 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
             </div>
           </div>
         </div>
-        <h1 className="font-semibold text-center mt-5">Status:</h1>
+        <h1 className="font-semibold text-center underline mt-5">Status</h1>
 
         <div className="drop-shadow-md p-2 flex flex-row">
           {renderStatus(
@@ -97,8 +100,12 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
         </div>
       </div>
       <div className="flex flex-row justify-around gap-3 px-3">
-        <Link href={`${bill.congressdotgov_url}`}>
-          <CustomButton label="View on Congress.gov" color="blue" />
+        <Link href={`${bill.congressdotgov_url}`} target="_blank">
+          {" "}
+          <button className="bg-blue-700 hover:bg-blue-900 px-2 py-1 rounded-md text-center font-bold drop-shadow-lg">
+            {" "}
+            View on Congress.gov
+          </button>
         </Link>
       </div>
     </div>

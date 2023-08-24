@@ -22,6 +22,7 @@ const fetchBills = async (): Promise<Bill[]> => {
 
   const response = await fetch(API_ENDPOINT, {
     headers: { "X-API-Key": apiKey },
+    next: { revalidate: 7200 },
   });
 
   if (!response.ok) {

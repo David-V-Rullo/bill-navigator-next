@@ -13,7 +13,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 }) => {
   return (
     <button
-      className={`bg-${color}-800 rounded-lg p-3 py-3 text-center drop-shadow-lg`}
+      className={"bg-blue rounded-lg p-3 py-3 text-center drop-shadow-lg"}
     >
       <div className="text-white font-semibold">{label}</div>
     </button>

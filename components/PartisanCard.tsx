@@ -57,20 +57,15 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
     const hexValue = rgbToHex(r, g, b);
     return hexValue;
   }, [votesWithParty, party]);
-  console.log(backgroundColor);
   return (
-    <div className="flex flex-col w-1/3 align-middle">
-      <div className="flex flex-row justify-center font-semibold">
-        Partisan Score
-      </div>
-      <div>
-        <div
-          style={{ backgroundColor: backgroundColor, fontSize: "48px" }}
-          className={`text-center font-sans font-semibold text-white p-2`}
-        >
-          {votesWithParty}
-        </div>{" "}
-      </div>
+    <div className="flex flex-col w-full items-center">
+      <div className=" font-semibold text-center underline">Partisan Score</div>
+      <div
+        style={{ backgroundColor: backgroundColor, fontSize: "48px" }}
+        className={`text-center font-sans font-semibold text-white p-2 my-5 w-1/2`}
+      >
+        {votesWithParty}
+      </div>{" "}
     </div>
   );
 };
