@@ -18,7 +18,7 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
     const democratColor = [0, 0, 255]; // RGB for blue
 
     let colorDifference;
-    let baseColor;
+    let baseColor = [0, 0, 0];
 
     if (votesWithParty >= 50) {
       colorDifference = (votesWithParty - 50) / 50;
@@ -33,6 +33,7 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
     }
 
     // Calculate the RGB values based on the difference
+
     const r = Math.round(
       neutralColor[0] -
         (neutralColor[0] - baseColor[0]) * Math.abs(colorDifference)
@@ -45,6 +46,7 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
       neutralColor[2] -
         (neutralColor[2] - baseColor[2]) * Math.abs(colorDifference)
     );
+
     function rgbToHex(r: number, g: number, b: number): string {
       return (
         "#" +

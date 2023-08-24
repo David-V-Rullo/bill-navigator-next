@@ -1,9 +1,11 @@
 import React from "react";
-import { Member, MemberData } from "@/types/index";
+import { MemberData } from "@/types/index";
 import Image from "next/image";
 import PartisanCard from "@/components/PartisanCard";
 import SocialMediaCard from "@/components/SocialMediaCard";
 import { CongressData } from "@/types/MemberCongressApi";
+import MemberPortrait from "@/components/MemberPortrait";
+
 const fetchMemberCongressAPI = async (id: string): Promise<CongressData> => {
   const apiKey = process.env.CONGRESS_API_KEY;
   const API_ENDPOINT = `https://api.congress.gov/v3/member/${id}?api_key=${apiKey}`;
@@ -17,6 +19,7 @@ const fetchMemberCongressAPI = async (id: string): Promise<CongressData> => {
   const data: CongressData = await response.json();
   return data;
 };
+
 const fetchMember = async (id: string): Promise<MemberData> => {
   const API_ENDPOINT = `https://api.propublica.org/congress/v1/members/${id}.json`;
   const apiKey = process.env.PROPUBLICA_API_KEY;
@@ -73,13 +76,7 @@ const MemberDetailPage = async ({
 
       <div className="flex flex-row gap-4 justify-between items-center mt-5">
         <div className="w-1/3 flex flex-col items-center">
-          <Image
-            src={`${congressData.member.depiction.imageUrl}`}
-            height={200}
-            width={200}
-            alt="member portrait"
-            className="rounded-full"
-          />
+          <MemberPortrait url={congressData.member.depiction.imageUrl} />
         </div>
 
         <ul className="grid grid-cols-3 gap-y-1">
