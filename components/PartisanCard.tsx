@@ -18,7 +18,7 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
     const democratColor = [0, 0, 255]; // RGB for blue
 
     let colorDifference;
-    let baseColor = [0, 0, 0];
+    let baseColor = neutralColor;
 
     if (votesWithParty >= 50) {
       colorDifference = (votesWithParty - 50) / 50;
