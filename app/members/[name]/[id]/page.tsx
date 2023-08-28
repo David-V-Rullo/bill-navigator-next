@@ -1,10 +1,10 @@
 import React from "react";
-import { MemberData } from "@/types/index";
+import { MemberData, StateAbbreviation } from "@/types/index";
 import Image from "next/image";
 import PartisanCard from "@/components/PartisanCard";
 import SocialMediaCard from "@/components/SocialMediaCard";
 import { CongressData } from "@/types/MemberCongressApi";
-import MemberPortrait from "@/components/MemberPortrait";
+import { stateAbbreviationToFullName } from "@/utils";
 
 const fetchMemberCongressAPI = async (id: string): Promise<CongressData> => {
   const apiKey = process.env.CONGRESS_API_KEY;
@@ -63,20 +63,29 @@ const MemberDetailPage = async ({
         bills_sponsored,
         district,
         office,
+        phone,
       },
     ],
   } = member;
   const memberName = params.name.replace(/%20/g, " ");
-  console.log(congressData.member.depiction.imageUrl);
+  const fullState = stateAbbreviationToFullName(
+    member.roles[0].state as StateAbbreviation
+  );
   return (
     <div className="flex container flex-col p-4 m-4 items-center">
-      <div className="font-bold text-center w-full mb-5">
+      <div className="font-bold text-center w-full mb-5 text-2xl">
         {member.roles[0].title} {memberName}
       </div>
 
-      <div className="flex flex-row gap-4 justify-between items-center mt-5">
-        <div className="w-1/3 flex flex-col items-center">
-          <MemberPortrait url={congressData.member.depiction.imageUrl} />
+      <div className="flex flex-row gap-4 justify-between  my-5 w-full">
+        <div className=" flex flex-col items-center">
+          <Image
+            src="/Portrait_Placeholder.png"
+            height={200}
+            width={200}
+            className="rounded-full object-contain"
+            alt={"member portrait"}
+          />
         </div>
 
         <ul className="grid grid-cols-3 gap-y-1">
@@ -84,19 +93,31 @@ const MemberDetailPage = async ({
             <p className="font-semibold">Congress:</p>
           </li>
           <li className="col-span-2">
-            <p>{congress}</p>
+            <p>{member.roles[0].congress}</p>
+          </li>
+          <li>
+            <p className="font-semibold">Party:</p>
+          </li>
+          <li className="col-span-2">
+            <p>{congressData.member.partyHistory[0].partyName}</p>
           </li>
           <li>
             <p className="font-semibold">State:</p>
           </li>
           <li className="col-span-2">
-            <p>{state}</p>
+            <p>{fullState}</p>
           </li>
           <li>
             <p className="font-semibold">District:</p>
           </li>
           <li className="col-span-2">
             <p>{district}</p>
+          </li>
+          <li>
+            <p className="font-semibold">Phone:</p>
+          </li>
+          <li className="col-span-2">
+            <p>{phone}</p>
           </li>
           <li>
             <p className="font-semibold">Address:</p>
@@ -107,14 +128,60 @@ const MemberDetailPage = async ({
             <p>Washington, DC 20003</p>
           </li>
         </ul>
+        <ul className="grid grid-cols-3 gap-y-1">
+          <li>
+            <p className="font-semibold">Current Leadership Position:</p>
+          </li>
+          <li className="col-span-2">
+            {congressData.member.leadership ? (
+              <p>{congressData.member.leadership[0].type}</p>
+            ) : (
+              <p>None</p>
+            )}
+          </li>
+          <li>
+            <p className="font-semibold">Terms in Congress:</p>
+          </li>
+          <li className="col-span-2">
+            <p>{congressData.member.terms.length}</p>
+          </li>
+          <li>
+            <p className="font-semibold">Committee Assignments:</p>
+          </li>
+          <li className="col-span-2">
+            {member.roles[0].committees.map((committee) => (
+              <>
+                <p key={committee.code}>
+                  {committee.title}, {committee.name}
+                </p>
+                <p key={committee.code}></p>
+              </>
+            ))}
+          </li>
+          <li>
+            <p className="font-semibold">Subcommittee Assignments:</p>
+          </li>
+          <li className="col-span-2">
+            {member.roles[0].subcommittees.map((subcommittee) => (
+              <>
+                <p key={subcommittee.code}>
+                  {subcommittee.title}, {subcommittee.name}
+                </p>
+              </>
+            ))}
+          </li>
+        </ul>
       </div>
 
-      <div className="flex flex-row justify-between items-center mt-4 w-full">
+      <div className="flex gap-4 mt-4 w-full justify-between">
         <PartisanCard
           votesWithParty={member.roles[0].votes_with_party_pct}
           party={member.current_party}
+          sponsoredLegislation={bills_sponsored}
+          cosponsoredLegislation={bills_cosponsored}
+          totalVotes={total_votes}
+          missedVotes={missed_votes}
         />
-        <p className="w-full text-center">Stat Card</p>
         <SocialMediaCard {...member} />
       </div>
     </div>

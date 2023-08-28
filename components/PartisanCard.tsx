@@ -4,10 +4,18 @@ import { useMemo } from "react";
 interface PartisanCardProps {
   votesWithParty: number;
   party: string;
+  sponsoredLegislation: number;
+  cosponsoredLegislation: number;
+  totalVotes: number;
+  missedVotes: number;
 }
 const PartisanCard: React.FC<PartisanCardProps> = ({
   votesWithParty,
   party,
+  sponsoredLegislation,
+  cosponsoredLegislation,
+  totalVotes,
+  missedVotes,
 }) => {
   // create a useMemo hook to calculate the background color
   // based on the votesWithParty and party props
@@ -60,14 +68,52 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
     return hexValue;
   }, [votesWithParty, party]);
   return (
-    <div className="flex flex-col w-full items-center">
-      <div className=" font-semibold text-center underline">Partisan Score</div>
-      <div
-        style={{ backgroundColor: backgroundColor, fontSize: "48px" }}
-        className={`text-center font-sans font-semibold text-white p-2 my-5 w-1/2`}
-      >
-        {votesWithParty}
-      </div>{" "}
+    <div className="flex  justify-between gap-4">
+      <div className="flex flex-col  items-center">
+        <div className=" font-semibold text-center underline">
+          Partisan Score
+        </div>
+        <div
+          style={{ backgroundColor: backgroundColor }}
+          className={`text-center font-sans font-semibold rounded-md text-white p-2 my-5 text-5xl`}
+        >
+          {votesWithParty}
+        </div>{" "}
+      </div>
+      <div className="flex flex-col  items-center">
+        <div className=" font-semibold text-center underline">
+          Sponsored Legislation
+        </div>
+        <div
+          className={`text-center font-sans font-semibold rounded-full text-white  p-2 my-5 text-5xl `}
+        >
+          {sponsoredLegislation}
+        </div>{" "}
+      </div>
+      <div className="flex flex-col  items-center">
+        <div className=" font-semibold text-center underline">
+          Co-Sponsored Legislation
+        </div>
+        <div
+          className={`text-center font-sans font-semibold rounded-full text-white  p-2 my-5 text-5xl `}
+        >
+          {cosponsoredLegislation}
+        </div>{" "}
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="font-semibold text-center underline">Total Votes</div>
+        <div
+          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-2 text-xl `}
+        >
+          {totalVotes}
+        </div>
+        <div className="font-semibold text-center underline">Missed Votes</div>
+        <div
+          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-2 text-xl `}
+        >
+          {missedVotes}
+        </div>{" "}
+      </div>
     </div>
   );
 };

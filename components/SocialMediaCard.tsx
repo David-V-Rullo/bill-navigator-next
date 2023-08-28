@@ -29,7 +29,6 @@ const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
 }) => {
   return (
     <div>
-      <h3>Social Media Links</h3>
       <ul className="flex flex-col gap-3 items-start justify-between w-full">
         {url && (
           <li className="flex items-center gap-3">

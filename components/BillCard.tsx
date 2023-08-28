@@ -36,12 +36,11 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
   const { bill } = props;
   const { introduced_date, house_passage, senate_passage, enacted } = bill;
   const congress = bill.bill_id.split("-")[1];
-  const memberName = bill.sponsor_name;
   return (
-    <div className="flex flex-col p-2 m-2  w-full">
+    <div className="flex flex-col p-4 m-2 mb-2 w-full bg-slate-800">
       <Link
         href={`/billDetails/${congress}/${bill.bill_slug}`}
-        className="font-bold text-center bg-blue-900"
+        className="font-bold text-center bg-blue-900 border-b-4 border-b-red-800 p-2 rounded-sm"
       >
         {bill.bill_id.toUpperCase()}
       </Link>

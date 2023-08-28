@@ -37,10 +37,8 @@ const Home = async () => {
   const bills = await fetchBills();
 
   return (
-    <div className="flex min-h-screen min-w-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen min-w-screen flex-col items-center justify-between p-20">
       <div className="flex flex-col justify-start w-1/2 items-center">
-        <h1>Bill Cards</h1>
-
         {bills.map((bill) => (
           <BillCard key={bill.bill_id} bill={bill} />
         ))}
