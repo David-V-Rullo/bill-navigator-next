@@ -79,3 +79,117 @@ export interface SingleBill {
   presidential_statements: any[]; // You can define a more specific type for presidential_statements if needed
   votes: any[]; // You can define a more specific type for votes if needed
 }
+
+// Below is the types for the Congress.gov API
+
+export interface CongressBill {
+  actions: Action;
+  amendments: Amendment;
+  cboCostEstimates: CboCostEstimate[];
+  committeeReports: CommitteeReport[];
+  committees: Committee;
+  congress: number;
+  constitutionalAuthorityStatementText: string;
+  cosponsors: Cosponsor;
+  introducedDate: string;
+  latestAction: LatestAction;
+  laws: Law[];
+  number: string;
+  originChamber: string;
+  policyArea: PolicyArea;
+  relatedBills: RelatedBill;
+  sponsors: Sponsor[];
+  subjects: Subject;
+  summaries: Summary;
+  textVersions: TextVersion;
+  title: string;
+  titles: Title;
+  type: string;
+  updateDate: string;
+  updateDateIncludingText: string;
+}
+
+interface Action {
+  count: number;
+  url: string;
+}
+
+interface Amendment {
+  count: number;
+  url: string;
+}
+
+interface CboCostEstimate {
+  description: string;
+  pubDate: string;
+  title: string;
+  url: string;
+}
+
+interface CommitteeReport {
+  citation: string;
+  url: string;
+}
+
+interface Committee {
+  count: number;
+  url: string;
+}
+
+interface Cosponsor {
+  count: number;
+  countIncludingWithdrawnCosponsors: number;
+  url: string;
+}
+
+interface LatestAction {
+  actionDate: string;
+  text: string;
+}
+
+interface Law {
+  number: string;
+  type: string;
+}
+
+interface PolicyArea {
+  name: string;
+}
+
+interface RelatedBill {
+  count: number;
+  url: string;
+}
+
+interface Sponsor {
+  bioguideId: string;
+  district?: number; // Optional as not all sponsors might have a district
+  firstName: string;
+  fullName: string;
+  isByRequest: string;
+  lastName: string;
+  middleName?: string; // Optional as not all sponsors might have a middle name
+  party: string;
+  state: string;
+  url: string;
+}
+
+interface Subject {
+  count: number;
+  url: string;
+}
+
+interface Summary {
+  count: number;
+  url: string;
+}
+
+interface TextVersion {
+  count: number;
+  url: string;
+}
+
+interface Title {
+  count: number;
+  url: string;
+}

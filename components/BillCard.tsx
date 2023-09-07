@@ -61,7 +61,7 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
         <div className="col-span-3">{bill.short_title}</div>
       </div>
       <div className="flex flex-col justify-center align-top my-3 w-full">
-        <div className="flex flex-row justify-between align-top gap-3 px-3">
+        <div className="flex flex-row justify-between items-start gap-3 px-3">
           <div className="flex flex-col justify-center align-top h-full w-full">
             <h1 className="font-semibold text-center">Latest Major Action:</h1>
             <h3 className="font-extralight text-center">
