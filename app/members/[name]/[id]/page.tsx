@@ -73,61 +73,83 @@ const MemberDetailPage = async ({
   );
   return (
     <div className="flex container flex-col p-4 m-4 items-center">
-      <div className="font-bold text-center w-full mb-5 text-2xl">
+      <div className="bg-blue-900 w-full mt-3 p-2 drop-shadow-xl border-b-red-800 border-b-4 font-sans font-semibold text-2xl text-center ">
         {member.roles[0].title} {memberName}
       </div>
 
-      <div className="flex flex-row gap-4 justify-between  my-5 w-full">
-        <div className=" flex flex-col items-center">
+      <div className="flex flex-row gap-4 justify-around my-5 w-full">
+        <div className=" flex flex-col items-center ">
           <Image
             src="/Portrait_Placeholder.png"
             height={200}
             width={200}
-            className="rounded-full object-contain"
+            className="rounded-full object-contain mb-4 p-2"
             alt={"member portrait"}
-          />
+          />{" "}
+          <ul className="grid grid-cols-3 gap-y-1">
+            <li>
+              <p className="font-semibold">Congress:</p>
+            </li>
+            <li className="col-span-2">
+              <p>{member.roles[0].congress}</p>
+            </li>
+            <li>
+              <p className="font-semibold">Party:</p>
+            </li>
+            <li className="col-span-2">
+              <p>{congressData.member.partyHistory[0].partyName}</p>
+            </li>
+            <li>
+              <p className="font-semibold">State:</p>
+            </li>
+            <li className="col-span-2">
+              <p>{fullState}</p>
+            </li>
+            {district && (
+              <>
+                {" "}
+                <li>
+                  <p className="font-semibold">District:</p>
+                </li>
+                <li className="col-span-2">
+                  <p>{district}</p>
+                </li>
+              </>
+            )}
+            {phone && (
+              <>
+                <li>
+                  <p className="font-semibold">Phone:</p>
+                </li>
+                <li className="col-span-2">
+                  <p>{phone}</p>
+                </li>
+              </>
+            )}
+            <li>
+              <p className="font-semibold">Address:</p>
+            </li>
+            <li className="col-span-2">
+              <p>{office}</p>
+              <p>1 Independence Ave SE, </p>
+              <p>Washington, DC 20003</p>
+            </li>
+          </ul>
         </div>
+        <PartisanCard
+          votesWithParty={member.roles[0].votes_with_party_pct}
+          party={member.current_party}
+          sponsoredLegislation={bills_sponsored}
+          cosponsoredLegislation={bills_cosponsored}
+          totalVotes={total_votes}
+          missedVotes={missed_votes}
+          terms={congressData.member.terms.length}
+        />
+        <SocialMediaCard {...member} />
+      </div>
+      <div className="w-1/2 border-2 my-12 border-gray-200"></div>
 
-        <ul className="grid grid-cols-3 gap-y-1">
-          <li>
-            <p className="font-semibold">Congress:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{member.roles[0].congress}</p>
-          </li>
-          <li>
-            <p className="font-semibold">Party:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{congressData.member.partyHistory[0].partyName}</p>
-          </li>
-          <li>
-            <p className="font-semibold">State:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{fullState}</p>
-          </li>
-          <li>
-            <p className="font-semibold">District:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{district}</p>
-          </li>
-          <li>
-            <p className="font-semibold">Phone:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{phone}</p>
-          </li>
-          <li>
-            <p className="font-semibold">Address:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{office}</p>
-            <p>1 Independence Ave SE, </p>
-            <p>Washington, DC 20003</p>
-          </li>
-        </ul>
+      <div className="flex flex-col justify-between  gap-3 px-3 w-full">
         <ul className="grid grid-cols-3 gap-y-1">
           <li>
             <p className="font-semibold">Current Leadership Position:</p>
@@ -139,12 +161,7 @@ const MemberDetailPage = async ({
               <p>None</p>
             )}
           </li>
-          <li>
-            <p className="font-semibold">Terms in Congress:</p>
-          </li>
-          <li className="col-span-2">
-            <p>{congressData.member.terms.length}</p>
-          </li>
+
           <li>
             <p className="font-semibold">Committee Assignments:</p>
           </li>
@@ -171,18 +188,6 @@ const MemberDetailPage = async ({
             ))}
           </li>
         </ul>
-      </div>
-
-      <div className="flex gap-4 mt-4 w-full justify-between">
-        <PartisanCard
-          votesWithParty={member.roles[0].votes_with_party_pct}
-          party={member.current_party}
-          sponsoredLegislation={bills_sponsored}
-          cosponsoredLegislation={bills_cosponsored}
-          totalVotes={total_votes}
-          missedVotes={missed_votes}
-        />
-        <SocialMediaCard {...member} />
       </div>
     </div>
   );

@@ -29,11 +29,11 @@ const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
 }) => {
   return (
     <div>
-      <ul className="flex flex-col gap-3 items-start justify-between w-full">
+      <ul className="flex flex-col gap-3 items-start justify-between w-full h-1/2">
         {url && (
           <li className="flex items-center gap-3">
             <Link href={url} />
-            <FaLink /> Website
+            <FaLink /> {url.toUpperCase()}
           </li>
         )}
         {twitter_account && (
@@ -45,19 +45,25 @@ const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
         {facebook_account && (
           <li className="flex items-center gap-3">
             <Link href={`https://facebook.com/${facebook_account}`} />{" "}
-            <FaFacebook /> {facebook_account}
+            <FaFacebook color="blue" title="FaceBook link for Members page" />{" "}
+            {facebook_account}
           </li>
         )}
         {youtube_account && (
           <li className="flex items-center gap-3">
             <Link href={`https://youtube.com/user/${youtube_account}`} />
-            <FaYoutube /> YouTube
+            <FaYoutube
+              color="red"
+              title="YouTube link for member channel"
+            />{" "}
+            {youtube_account.toUpperCase()}
           </li>
         )}
         {rss_url && (
           <li className="flex items-center gap-2">
             <Link href={rss_url} />
-            <FaRss /> RSS Feed
+            <FaRss color="orange" title="Rss icon for member feed" />{" "}
+            {rss_url.toUpperCase()}
           </li>
         )}
       </ul>
