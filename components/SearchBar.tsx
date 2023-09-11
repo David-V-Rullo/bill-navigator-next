@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
-import SearchComboBox from "./SearchComboBox";
 
 // interface Props {
 //   onSearch: (term1: string, term2: string) => void;
