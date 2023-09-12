@@ -39,13 +39,17 @@ const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
         {twitter_account && (
           <li className="flex items-center gap-3">
             <Link href={`https://twitter.com/${twitter_account}`} />
-            <FaTwitter /> @{twitter_account}
+            <FaTwitter size="25" /> @{twitter_account}
           </li>
         )}
         {facebook_account && (
           <li className="flex items-center gap-3">
             <Link href={`https://facebook.com/${facebook_account}`} />{" "}
-            <FaFacebook color="blue" title="FaceBook link for Members page" />{" "}
+            <FaFacebook
+              size="25"
+              color="blue"
+              title="FaceBook link for Members page"
+            />{" "}
             {facebook_account}
           </li>
         )}
