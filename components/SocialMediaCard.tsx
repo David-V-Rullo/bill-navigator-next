@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import {
   FaTwitter,
   FaFacebook,
@@ -19,8 +18,6 @@ interface SocialMediaLinksProps {
 }
 
 const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
-  first_name,
-  last_name,
   twitter_account,
   facebook_account,
   youtube_account,
@@ -29,45 +26,63 @@ const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
 }) => {
   return (
     <div>
-      <ul className="flex flex-col gap-3 items-start justify-between w-full h-1/2">
+      <ul className="flex flex-col gap-3 p-3 items-start justify-between w-full h-1/2 text-sm ">
         {url && (
-          <li className="flex items-center gap-3">
-            <Link href={url} />
-            <FaLink /> {url.toUpperCase()}
+          <li className="flex items-start gap-2">
+            <FaLink />{" "}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {url.toUpperCase()}
+            </a>
           </li>
         )}
         {twitter_account && (
           <li className="flex items-center gap-3">
-            <Link href={`https://twitter.com/${twitter_account}`} />
-            <FaTwitter size="25" /> @{twitter_account}
+            <FaTwitter size="25" />{" "}
+            <a
+              href={`https://twitter.com/${twitter_account}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @{twitter_account}
+            </a>
           </li>
         )}
         {facebook_account && (
           <li className="flex items-center gap-3">
-            <Link href={`https://facebook.com/${facebook_account}`} />{" "}
+            {" "}
             <FaFacebook
               size="25"
               color="blue"
               title="FaceBook link for Members page"
-            />{" "}
-            {facebook_account}
+            />
+            <a
+              href={`https://facebook.com/${facebook_account}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {facebook_account}
+            </a>
           </li>
         )}
         {youtube_account && (
-          <li className="flex items-center gap-3">
-            <Link href={`https://youtube.com/user/${youtube_account}`} />
-            <FaYoutube
-              color="red"
-              title="YouTube link for member channel"
-            />{" "}
-            {youtube_account.toUpperCase()}
+          <li className="flex items-center gap-2">
+            <FaYoutube color="red" title="YouTube link for member channel" />{" "}
+            <a
+              href={`https://youtube.com/user/${youtube_account}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              {youtube_account.toUpperCase()}
+            </a>
           </li>
         )}
         {rss_url && (
           <li className="flex items-center gap-2">
-            <Link href={rss_url} />
             <FaRss color="orange" title="Rss icon for member feed" />{" "}
-            {rss_url.toUpperCase()}
+            <a href={rss_url} target="_blank" rel="noopener noreferrer">
+              {rss_url.toUpperCase()}
+            </a>
           </li>
         )}
       </ul>

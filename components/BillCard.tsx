@@ -8,13 +8,14 @@ interface BillCardProps {
 
 const renderButton = (status: string | null, label: string) => (
   <button
-    className={`px-4 py-2 text-white font-semibold cursor-default ${
-      status ? "bg-green-500" : "bg-gray-500"
+    className={`px-4 py-2  cursor-default ${
+      status
+        ? "bg-green-500 text-white font-semibold"
+        : "bg-gray-700 text-gray-400"
     }`}
   >
     <h2 className="bg-inherit">
-      {label}{" "}
-      {status && <h2 className="bg-inherit font-light text-sm">{status}</h2>}
+      {label} {status && <h2 className="bg-inherit text-sm">{status}</h2>}
     </h2>
   </button>
 );
@@ -37,14 +38,15 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
   const { introduced_date, house_passage, senate_passage, enacted } = bill;
   const congress = bill.bill_id.split("-")[1];
   return (
-    <div className="flex flex-col p-4 m-2 mb-2 w-full bg-slate-800">
-      <Link
-        href={`/billDetails/${congress}/${bill.bill_slug}`}
-        className="font-bold text-center bg-blue-900 border-b-4 border-b-red-800 p-2 rounded-sm"
-      >
-        {bill.bill_id.toUpperCase()}
-      </Link>
-      <div className="grid grid-cols-4 gap-4 py-4">
+    <div className="flex flex-col  w-full bg-slate-800 rounded-md">
+      <div className="font-bold text-center bg-blue-900 border-b-4 border-b-red-800 p-2 rounded-sm">
+        {" "}
+        <Link href={`/billDetails/${congress}/${bill.bill_slug}`}>
+          {bill.bill_id.toUpperCase()}
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 p-5 py-4">
         <div className="font-semibold">Introduced:</div>
         <div className="col-span-3">{bill.introduced_date}</div>
         <div className="font-semibold">Sponsor:</div>
@@ -89,7 +91,7 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
         </div>
         <h1 className="font-semibold text-center underline mt-5">Status</h1>
 
-        <div className="drop-shadow-md p-2 flex flex-row">
+        <div className="drop-shadow-md p-2 flex flex-row items-center">
           {renderStatus(
             introduced_date,
             house_passage,
@@ -98,7 +100,7 @@ const BillCard: React.FC<BillCardProps> = (props: BillCardProps) => {
           )}
         </div>
       </div>
-      <div className="flex flex-row justify-around gap-3 px-3">
+      <div className="flex flex-row justify-around gap-3 p-5">
         <Link href={`${bill.congressdotgov_url}`} target="_blank">
           {" "}
           <button className="bg-blue-700 hover:bg-blue-900 px-2 py-1 rounded-md text-center font-bold drop-shadow-lg">

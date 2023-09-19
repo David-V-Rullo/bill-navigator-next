@@ -72,12 +72,12 @@ const MemberDetailPage = async ({
     member.roles[0].state as StateAbbreviation
   );
   return (
-    <div className="flex container flex-col p-4 m-4 items-center">
-      <div className="bg-blue-900 w-full mt-3 p-2 drop-shadow-xl border-b-red-800 border-b-4 font-sans font-semibold text-2xl text-center ">
+    <div className="flex container flex-col p-4  items-center">
+      <div className="bg-blue-900 w-full p-2 drop-shadow-xl border-b-red-800 border-b-4 font-sans font-semibold text-2xl text-center ">
         {member.roles[0].title} {memberName}
       </div>
-
-      <div className="flex flex-row gap-4 justify-around my-5 w-full">
+      <div className="py-6"></div>
+      <div className="flex flex-row gap-4 justify-around w-full">
         <div className=" flex flex-col items-center ">
           <Image
             src="/Portrait_Placeholder.png"

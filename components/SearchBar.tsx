@@ -3,12 +3,14 @@
 import React, { useState, FormEvent, useEffect } from "react";
 import Cookie from "js-cookie";
 import WelcomeDialog from "./WelcomeDialog";
+import { Button } from "@nextui-org/button";
+import { useDisclosure } from "@nextui-org/react";
 
 const SearchBar: React.FC = () => {
   const [term1, setTerm1] = useState<string>("");
   const [term2, setTerm2] = useState<string>("");
   const [showDialog, setShowDialog] = useState<boolean>(false);
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };
@@ -25,7 +27,7 @@ const SearchBar: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex gap-3 justify-between">
       <form onSubmit={handleSubmit} className="flex justify-start space-x-2 ">
         <label className="sr-only" htmlFor="term1">
           Subject
@@ -59,7 +61,6 @@ const SearchBar: React.FC = () => {
           Search
         </button>
       </form>
-      {showDialog && <WelcomeDialog onClose={onClose} />}
     </div>
   );
 };

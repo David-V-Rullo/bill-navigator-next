@@ -70,14 +70,14 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
     return hexValue;
   }, [votesWithParty, party]);
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-3 content-around">
       <div className="flex flex-col items-center">
         <div className="font-semibold text-center underline">
           Partisan Score
         </div>
         <div
           style={{ backgroundColor: backgroundColor }}
-          className={`text-center font-sans font-semibold rounded-md text-white p-2 my-5 text-5xl`}
+          className={`text-center font-sans font-semibold rounded-md text-white p-2 text-5xl`}
         >
           {votesWithParty}
         </div>
@@ -88,7 +88,7 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
           Sponsored Legislation
         </div>
         <div
-          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-5 text-5xl`}
+          className={`text-center font-sans font-semibold rounded-full text-white p-2  text-5xl`}
         >
           {sponsoredLegislation}
         </div>
@@ -99,31 +99,34 @@ const PartisanCard: React.FC<PartisanCardProps> = ({
           Co-Sponsored Legislation
         </div>
         <div
-          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-5 text-5xl`}
+          className={`text-center font-sans font-semibold rounded-full text-white p-2  text-5xl`}
         >
           {cosponsoredLegislation}
         </div>
       </div>
+
       <div className="flex flex-col items-center">
         <div className="font-semibold text-center underline">Terms Served</div>
         <div
-          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-5 text-5xl`}
+          className={`text-center font-sans font-semibold rounded-full text-white p-2  text-5xl`}
         >
           {terms}
         </div>
       </div>
+
       <div className="flex flex-col items-center">
         <div className="font-semibold text-center underline">Total Votes</div>
         <div
-          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-5 text-5xl`}
+          className={`text-center font-sans font-semibold rounded-full text-white p-2  text-5xl`}
         >
           {totalVotes}
         </div>
       </div>
+
       <div className="flex flex-col items-center">
         <div className="font-semibold text-center underline">Missed Votes</div>
         <div
-          className={`text-center font-sans font-semibold rounded-full text-white p-2 my-5 text-5xl`}
+          className={`text-center font-sans font-semibold rounded-full text-white p-2 text-5xl`}
         >
           {missedVotes}
         </div>
