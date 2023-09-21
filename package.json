@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
     "@nextui-org/react": "^2.1.12",
+    "@prisma/client": "^5.3.1",
     "@types/js-cookie": "^3.0.3",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
@@ -31,5 +32,8 @@
     "react-icons": "^4.10.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "prisma": "^5.3.1"
   }
 }

@@ -14,9 +14,9 @@ const renderButton = (status: string | null, label: string) => (
         : "bg-gray-700 text-gray-400"
     }`}
   >
-    <h2 className="bg-inherit">
-      {label} {status && <h2 className="bg-inherit text-sm">{status}</h2>}
-    </h2>
+    <div className="bg-inherit">
+      {label} {status && <div className="bg-inherit text-sm">{status}</div>}
+    </div>
   </button>
 );
 

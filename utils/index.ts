@@ -1,5 +1,5 @@
 import type { StateAbbreviation } from "../types";
-
+import type { Bill } from "../types";
 export function stateAbbreviationToFullName(
   abbreviation: StateAbbreviation
 ): string {
@@ -57,4 +57,34 @@ export function stateAbbreviationToFullName(
   };
 
   return stateMapping[abbreviation];
+}
+interface ApiResponse {
+  status: string;
+  results: {
+    num_results: number;
+    offset: number;
+    bills: Bill[];
+  }[];
+}
+
+export async function fetchBills(): Promise<Bill[]> {
+  const API_ENDPOINT =
+    "https://api.propublica.org/congress/v1/bills/search.json?sort=date&dir=desc";
+
+  const apiKey = process.env.PROPUBLICA_API_KEY;
+  if (!apiKey) {
+    throw new Error("No API key");
+  }
+
+  const response = await fetch(API_ENDPOINT, {
+    headers: { "X-API-Key": apiKey },
+    next: { revalidate: 7200 },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch bills");
+  }
+
+  const data: ApiResponse = await response.json();
+  return data.results[0]?.bills || []; // Return an empty array if 'bills' is not available
 }
