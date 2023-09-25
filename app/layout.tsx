@@ -6,7 +6,6 @@ import { Open_Sans } from "next/font/google";
 import dotenv from "dotenv";
 import Providers from "./providers";
 import ThemeButton from "@/components/ThemeButton";
-import WelcomeDialog from "@/components/WelcomeDialog";
 dotenv.config();
 const openSans = Open_Sans({
   weight: ["300", "400", "600", "700"],
