@@ -1,30 +1,18 @@
 "use client";
 
 import React, { useState, FormEvent, useEffect } from "react";
-import Cookie from "js-cookie";
-import WelcomeDialog from "./WelcomeDialog";
-import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/react";
+// import Cookie from "js-cookie";
+// import WelcomeDialog from "./WelcomeDialog";
+// import { Button } from "@nextui-org/button";
+// import { useDisclosure } from "@nextui-org/react";
 
 const SearchBar: React.FC = () => {
   const [term1, setTerm1] = useState<string>("");
   const [term2, setTerm2] = useState<string>("");
-  const [showDialog, setShowDialog] = useState<boolean>(false);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };
-  const onClose = () => {
-    setShowDialog(false);
-  };
-
-  useEffect(() => {
-    const isFirstVisit = Cookie.get("isFirstVisit");
-    if (!isFirstVisit) {
-      setShowDialog(true);
-      Cookie.set("isFirstVisit", "false", { expires: 365 });
-    }
-  }, []);
 
   return (
     <div className="flex gap-3 justify-between">

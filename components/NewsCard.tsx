@@ -2,17 +2,23 @@ import React from "react";
 
 const NewsCard = () => {
   return (
-    <div className="flex flex-col gap-2 w-full bg-slate-800">
-      <div className="bg-blue-900 w-full p-2 px-5 drop-shadow-xl border-b-red-800 border-b-4 font-sans font-semibold text-2xl text-center ">
-        News and Updates
+    <div>
+      <div className="flex bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 w-full rounded-l  border-b-red-800 border-b-4 ">
+        <div className="text-base sm:text-xl md:text-2xl font-semibold p-2 ">
+          News and Updates
+        </div>
       </div>
-      <div className="p-3">
-        <h1>Welcome</h1>
-        <p>
-          This is a alpha build of a project that has been in my head for many
-          years.
-        </p>
-        <p>This is a test</p>
+      <div className="flex flex-col gap-2 w-full bg-gradient-to-b from-slate-600 to-slate-800 p-2 sm:p-4 md:p-6">
+        <div className="p-2 sm:p-3 md:p-4">
+          <p className="mb-4">
+            This is an alpha build of a project that has been in my head for
+            many years. I hope to continue to add features and improve the user
+            experience.
+          </p>
+          <p>
+            All data is pulled from the Propublica API and the Congress.gov API.
+          </p>
+        </div>
       </div>
     </div>
   );

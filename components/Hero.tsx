@@ -5,15 +5,15 @@ const Hero = () => {
   return (
     <div className="flex justify-between items-center px-10 text-slate-900 dark:text-white">
       <div className="flex flex-col justify-start">
-        <Link href="/" className="text-4xl font-bold">
+        <Link href="/" className="text-3xl font-bold">
           Bill Navigator
         </Link>
-        <h2 className="text-2xl pt-2">A Source for Tracking Congress</h2>
+        <h2 className="text-xl pt-2">A Source for Tracking Congress</h2>
       </div>
       <Image
         src="/ThemeColorLogo.png"
-        height={300}
-        width={300}
+        height={250}
+        width={250}
         alt="navigator logo"
       />
     </div>

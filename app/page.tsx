@@ -2,7 +2,6 @@ import React from "react";
 import BillCard from "@/components/BillCard";
 import { Bill } from "@/types/index";
 import SearchBar from "@/components/SearchBar";
-import WelcomeDialog from "@/components/WelcomeDialog";
 import NewsCard from "@/components/NewsCard";
 
 interface ApiResponse {
@@ -41,16 +40,16 @@ const Home = async () => {
 
   return (
     <div className="flex min-h-screen min-w-screen flex-col items-center justify-between p-10">
-      <div className="flex bg-blue-900 w-full mt-3 p-2  drop-shadow-xl border-b-red-800 border-b-4 border-t-4 border-t-red-800">
+      <div className="flex bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 w-full mt-3 p-2  drop-shadow-xl border-b-red-800 border-b-4 ">
         <SearchBar />
       </div>
       <div className="py-8"></div>
       <div className="flex justify-between w-full gap-5">
-        <div className="flex flex-col gap-2 w-1/3">
+        <div className="flex flex-col gap-2 w-1/4">
           <NewsCard />
         </div>
         <div className="px-5"></div>
-        <div className="flex flex-col justify-start gap-3 items-center w-2/3">
+        <div className="flex flex-col justify-start gap-5 items-center w-3/4">
           {bills.map((bill) => (
             <BillCard key={bill.bill_id} bill={bill} />
           ))}

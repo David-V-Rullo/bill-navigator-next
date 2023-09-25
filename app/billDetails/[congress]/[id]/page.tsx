@@ -1,6 +1,7 @@
 import React from "react";
 import { SingleBill, CongressBill } from "@/types/index";
 import Link from "next/link";
+import ActionCard from "@/components/ActionCard";
 
 function splitString(inputString: string): [string | null, string | null] {
   const match = inputString.match(/([a-zA-Z]+)([0-9]+)/);
@@ -41,7 +42,7 @@ const convertBillType = (billType: string) => {
     case "sjres":
       return "Senate Joint Resolution";
     default:
-      return; // or throw an error, or return a default value, as needed
+      return;
   }
 };
 
@@ -61,7 +62,7 @@ const fetchBill = async (congress: string, id: string): Promise<SingleBill> => {
   }
 
   const data = await response.json();
-  return data.results[0] || []; // Return an empty array if 'bills' is not available
+  return data.results[0] || [];
 };
 
 const BillDetails = async ({
@@ -79,18 +80,19 @@ const BillDetails = async ({
   }
   const congressBill = await fetchCongressBill(type, number, congress);
   const bill = await fetchBill(congress, id);
+  console.log("Congress Bill", congressBill);
+  console.log("Pro Pub Bill", bill);
   return (
     <div className="flex flex-col p-2 m-2 items-center">
-      <div className="flex flex-row justify-between gap-3 px-3">
-        {" "}
-        <div className="bg-blue-900 w-full mt-3 p-2 drop-shadow-xl border-b-red-800 border-b-4 font-sans font-semibold text-2xl ">
-          {bill.bill_id.toLocaleUpperCase()} - {bill.short_title}
+      <div className="w-full flex justify-between gap-3 px-3">
+        <div className="bg-blue-900 w-full mt-3 p-2 drop-shadow-xl border-b-red-800 border-b-4 font-sans font-semibold text-xl sm:text-2xl">
+          {bill.bill_id.toLocaleUpperCase()}
         </div>
       </div>
-      <div className="flex flex-row justify-between gap-3 px-3 w-full">
-        <div className="flex flex-col justify-start w-1/3 items-center">
-          <div className=" font-semibold  underline mb-2">Bill Information</div>
-          <ul className="grid grid-cols-3 gap-y-1 gap-x-2">
+      <div className="flex flex-col sm:flex-row justify-between gap-3 px-3 w-full mt-4">
+        <div className="flex flex-col justify-start w-full sm:w-1/3 items-center mb-4 sm:mb-0">
+          <div className="font-semibold underline mb-2">Bill Information</div>
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-y-1 gap-x-2">
             <li>
               <p className="font-semibold">Bill ID:</p>
             </li>
@@ -143,13 +145,25 @@ const BillDetails = async ({
               <p>
                 {bill.latest_major_action} ({bill.latest_major_action_date})
               </p>
-            </li>
+            </li>{" "}
           </ul>
-
-          <ul className="grid grid-cols-3 gap-y-1 gap-x-2"></ul>
         </div>
-        <div className="flex flex-col justify-start w-2/3 items-center">
+        {/* <div className="flex flex-col justify-start w-full sm:w-2/3 items-center">
           {congressBill && congressBill.title}
+        </div> */}
+        <div className="flex flex-col align-center w-1/3 gap-4">
+          <div className="font-semibold underline mb-2 text-center">
+            Actions
+          </div>
+          {bill.actions.map((action) => (
+            <ActionCard
+              key={action.id}
+              chamber={action.chamber}
+              action_type={action.action_type}
+              datetime={action.datetime}
+              description={action.description}
+            />
+          ))}
         </div>
       </div>
     </div>

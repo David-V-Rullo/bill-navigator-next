@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body className={openSans.className}>
         <Providers>
-          <main className="bg-white dark:bg-slate-950 relative max-width mx-10 p-10 overflow-hidden">
+          <main className="bg-white dark:bg-slate-950 relative max-width overflow-hidden">
             <ThemeButton />
             <Hero />
             {children}
