@@ -79,7 +79,7 @@ const MemberDetailPage = async ({
       <div className="py-6"></div>
       <div className="flex flex-row gap-4 justify-around w-full">
         <div className=" flex flex-col items-center ">
-          <a
+          {/* <a
             title="Senate of the United States, Public domain, via Wikimedia Commons"
             href="https://commons.wikimedia.org/wiki/File:Cory_Booker,_official_portrait,_114th_Congress.jpg"
           >
@@ -89,14 +89,14 @@ const MemberDetailPage = async ({
               alt="Cory Booker, official portrait, 114th Congress"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Cory_Booker%2C_official_portrait%2C_114th_Congress.jpg/256px-Cory_Booker%2C_official_portrait%2C_114th_Congress.jpg"
             ></img>
-          </a>
-          {/* <Image
+          </a> */}
+          <Image
             src="/Portrait_Placeholder.png"
             height={200}
             width={200}
             className="rounded-full object-contain mb-4 p-2"
             alt={"member portrait"}
-          />{" "} */}
+          />{" "}
           <ul className="grid grid-cols-3 gap-y-1">
             <li>
               <p className="font-semibold">Congress:</p>
