@@ -18,14 +18,14 @@ const SearchBar: React.FC = () => {
     <div className="flex gap-3 justify-between">
       <form onSubmit={handleSubmit} className="flex justify-start space-x-2 ">
         <label className="sr-only" htmlFor="term1">
-          Subject
+          Bill Number
         </label>
         <input
           type="text"
           id="term1"
           value={term1}
           onChange={(e) => setTerm1(e.target.value)}
-          placeholder="Subject"
+          placeholder="Bill Number"
           className="p-1 border rounded-sm  text-slate-900"
           aria-label="First Search Input"
         />
